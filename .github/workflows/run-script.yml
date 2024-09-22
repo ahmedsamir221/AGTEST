@@ -1,0 +1,13 @@
+name: Trigger Local Script
+
+on:
+  workflow_dispatch:  # This allows you to manually trigger the workflow
+
+jobs:
+  trigger-script:
+    runs-on: ubuntu-latest  # or windows-latest if you prefer Windows runner
+
+    steps:
+      - name: Send GET request to local server
+        run: |
+          curl -X GET https://15c4-41-64-173-138.ngrok-free.app/run-script
