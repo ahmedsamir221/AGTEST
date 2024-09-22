@@ -1,11 +1,13 @@
-name: Trigger Local Script
+name: Trigger Local Script on Push
 
 on:
-  workflow_dispatch:  # This allows you to manually trigger the workflow
+  push:
+    branches:
+      - main  # Trigger only on pushes to the 'main' branch
 
 jobs:
   trigger-script:
-    runs-on: ubuntu-latest  # or windows-latest if you prefer Windows runner
+    runs-on: ubuntu-latest  # or windows-latest if needed
 
     steps:
       - name: Send GET request to local server
