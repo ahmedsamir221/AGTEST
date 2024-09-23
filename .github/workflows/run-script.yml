@@ -1,15 +1,27 @@
-name: Trigger Local Script on Push
+name: Read from File and Make HTTP Call
 
 on:
   push:
     branches:
-      - main  # Trigger only on pushes to the 'main' branch
+      - main
 
 jobs:
-  trigger-script:
-    runs-on: ubuntu-latest  # or windows-latest if needed
-
+  read-and-call:
+    runs-on: ubuntu-latest
     steps:
-      - name: Send GET request to local server
-        run: |
-          curl -X GET https://15c4-41-64-173-138.ngrok-free.app/run-script
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Step 1: Read the file and save its content to an environment variable
+    - name: Read value from file
+      id: read_value
+      run: |
+        value=$(cat ./deployment_configurations.txt) # Read file content
+        echo "Value from file: $value"
+        echo "FILE_VALUE=$value" >> $GITHUB_ENV # Save to environment variable
+
+    # Step 2: Make an HTTP request using the value
+    - name: Make HTTP request
+      run: |
+        curl -X POST "https://da6a-41-64-173-138.ngrok-free.app/run-script" \
+        -d $FILE_VALUE
