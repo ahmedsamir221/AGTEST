@@ -16,7 +16,7 @@ jobs:
     - name: Read value from file
       id: read_value
       run: |
-        value=$(cat ./deployment_configurations.json) # Read file content
+        value=$(cat ./deployment_configurations.txt) # Read file content
         echo "Value from file: $value"
         echo "FILE_VALUE=$value" >> $GITHUB_ENV # Save to environment variable
 
@@ -25,4 +25,4 @@ jobs:
       run: |
         curl -X POST "https://da6a-41-64-173-138.ngrok-free.app/run-script" \
         -H "Content-Type: application/json" \
-        -d "{\"config\":\"$FILE_VALUE\"}"
+        -d "{\"packages\":\"$FILE_VALUE\"}"
