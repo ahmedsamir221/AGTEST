@@ -24,4 +24,5 @@ jobs:
     - name: Make HTTP request
       run: |
         curl -X POST "https://da6a-41-64-173-138.ngrok-free.app/run-script" \
-        -d $FILE_VALUE
+        -H "Content-Type: text/plain" \ # Add content type if needed
+        -d "$FILE_VALUE" # Use quotes around the variable
