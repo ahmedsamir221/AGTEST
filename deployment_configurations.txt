@@ -1,1 +1,1 @@
-automateDeployment2,automateDeployment1
+automateDeployment1,automateDeployment2
