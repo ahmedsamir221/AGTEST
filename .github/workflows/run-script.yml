@@ -23,6 +23,6 @@ jobs:
     # Step 2: Make an HTTP request using the value
     - name: Make HTTP request
       run: |
-        curl -X POST "https://da6a-41-64-173-138.ngrok-free.app/run-script" \
+        curl -X POST "http://41.64.173.138:3000/run-script" \
         -H "Content-Type: application/json" \
         -d "{\"packages\":\"$FILE_VALUE\"}"
